@@ -50,8 +50,8 @@ module.exports = {
     const upload = (file) =>
       new Promise((resolve, reject) => {
         const fileName = `${file.hash}-${Date.now()}${file.ext}`;
-        const fileKey = this.config.directory
-          ? `${this.config.directory}/${filename}`
+        const fileKey = config.directory
+          ? `${config.directory}/${filename}`
           : filename;
         console.log("file key", fileKey);
 
