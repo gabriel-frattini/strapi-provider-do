@@ -17,10 +17,8 @@ class FileLocationConverter {
   }
 
   getUrl(data) {
-    const filePath = this.config.directory
-      ? `${this.config.directory}/${data.Key}`
-      : data.Key;
-    return `${this.config.endpoint}/${filePath}`;
+    console.log("data.key ", data.key);
+    return `${this.config.endpoint}/${data.key}`;
   }
 }
 
