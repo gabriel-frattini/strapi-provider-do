@@ -10,7 +10,10 @@ class FileLocationConverter {
 
   getKey(file) {
     const filename = `${file.hash}${file.ext}`;
-    return `${filename}`;
+    const key = this.config.directory
+      ? `${this.config.directory}/${filename}`
+      : filename;
+    return `${key}`;
   }
 
   getUrl(data) {
@@ -46,10 +49,11 @@ module.exports = {
 
     const upload = (file) =>
       new Promise((resolve, reject) => {
-        const fileKey = `${file.hash}-${Date.now()}${file.ext}`;
+        const fileName = `${file.hash}-${Date.now()}${file.ext}`;
+        const fileKey = this.config.directory
+          ? `${this.config.directory}/${filename}`
+          : filename;
         console.log("file key", fileKey);
-
-        console.log("file path ", file.stream.path);
 
         const params = {
           ACL: "public-read",
