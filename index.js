@@ -5,7 +5,6 @@ const path = require("path");
 
 class FileLocationConverter {
   constructor(config) {
-    console.log("config", config);
     this.config = config;
   }
 
@@ -15,7 +14,10 @@ class FileLocationConverter {
   }
 
   getUrl(data) {
-    return `${this.config.endpoint}/${data.Key}`;
+    const filePath = this.config.directory
+      ? `${this.config.directory}/${data.Key}`
+      : data.Key;
+    return `${this.config.endpoint}/${filePath}`;
   }
 }
 
@@ -62,7 +64,6 @@ module.exports = {
           (err, data) => {
             console.error("got error, ", err);
             if (err) return reject(err);
-            strapi.log.info("got data ", data);
             file.url = converter.getUrl(data);
             delete file.buffer;
             resolve();
