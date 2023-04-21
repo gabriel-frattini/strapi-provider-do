@@ -5,7 +5,7 @@ const path = require("path");
 
 class FileLocationConverter {
   constructor(config) {
-    strapi.log.info("config", config);
+    console.log("config", config);
     this.config = config;
   }
 
@@ -21,7 +21,16 @@ class FileLocationConverter {
 
 module.exports = {
   init: (config) => {
+    console.log("config", config);
     const converter = new FileLocationConverter(config);
+
+    process.env.AWS_ACCESS_KEY_ID = config.key;
+    process.env.AWS_SECRET_ACCESS_KEY = config.secret;
+
+    AWS.config.update({
+      accessKeyId: config.key,
+      secretAccessKey: config.secret,
+    });
 
     const S3 = new AWS.S3({
       endpoint: "ams3.digitaloceanspaces.com",
