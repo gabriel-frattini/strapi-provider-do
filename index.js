@@ -1,7 +1,5 @@
 "use strict";
 const AWS = require("aws-sdk");
-const URI = require("urijs");
-const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 
