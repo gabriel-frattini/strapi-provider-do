@@ -13,8 +13,6 @@ class FileLocationConverter {
 
   getKey(file) {
     const filename = `${file.hash}${file.ext}`;
-    if (!this.config.directory) return filename;
-    //return `${this.config.directory}/${filename}`;
     return `${filename}`;
   }
 
