@@ -25,11 +25,11 @@ module.exports = {
 
     const S3 = new AWS.S3({
       endpoint: "ams3.digitaloceanspaces.com",
-      accessKeyId: this.config.key,
-      secretAccessKey: this.config.secret,
+      accessKeyId: config.key,
+      secretAccessKey: config.secret,
       params: {
         ACL: "public-read",
-        Bucket: this.config.bucket,
+        Bucket: config.bucket,
       },
     });
 
@@ -42,7 +42,7 @@ module.exports = {
 
         const params = {
           ACL: "public-read",
-          Bucket: this.config.bucket,
+          Bucket: config.bucket,
           Body: fs.createReadStream(file.stream.path),
           Key: fileKey,
         };
@@ -81,7 +81,7 @@ module.exports = {
           //--- Delete the file from the space
           S3.deleteObject(
             {
-              Bucket: this.config.bucket,
+              Bucket: config.bucket,
               Key: converter.getKey(file),
             },
 
