@@ -49,7 +49,7 @@ module.exports = {
 
     const upload = (file) =>
       new Promise((resolve, reject) => {
-        const fileName = `${file.hash}-${Date.now()}${file.ext}`;
+        const filename = `${file.hash}-${Date.now()}${file.ext}`;
         const fileKey = config.directory
           ? `${config.directory}/${filename}`
           : filename;
